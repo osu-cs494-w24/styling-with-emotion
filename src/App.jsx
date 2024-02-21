@@ -10,18 +10,23 @@ function Banner(props) {
     const styles = {
         border: "1px solid forestgreen",
         backgroundColor: "floralwhite",
-        color: warning ? "firebrick" : "forestgreen",
+        color: "forestgreen",
         padding: "20px"
     }
+    const warningStyles = {
+        color: "firebrick",
+        borderColor: "firebrick",
+        backgroundColor: "papayawhip"
+    }
     return (
-        <div css={styles}>
+        <div css={[ styles, warning && warningStyles ]}>
             {children}
         </div>
     )
 }
 
 function Button(props) {
-    const { children, secondary } = props
+    const { children, secondary, className } = props
     const color = "olivedrab"
     const styles = css`
         color: ${secondary ? "royalblue" : "snow"};
@@ -34,7 +39,8 @@ function Button(props) {
             background-color: gainsboro;
         }
     `
-    return <button css={styles} {...props}>{children}</button>
+    console.log("== props:", props)
+    return <button css={styles} className={className}>{children}</button>
 }
 
 function PhotoCard(props) {
